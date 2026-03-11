@@ -5,29 +5,36 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                echo 'Cloning repository...'
+                echo 'Cloning repository'
                 git 'https://github.com/alinerose-design/Hello-World.git'
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Unit Tests') {
             steps {
-                echo 'Running unit tests'
+                echo 'Running tests'
                 sh 'echo "Tests executed successfully"'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo 'Simulating Docker build'
-                sh 'echo "Docker image hello-world-app built successfully"'
+                echo 'Building Docker image'
+                sh 'echo "docker build -t hello-world-app ."'
             }
         }
 
-        stage('Deploy Application') {
+        stage('Push Image to Docker Hub') {
             steps {
-                echo 'Deploying application to test server'
-                sh 'echo "Application deployed successfully"'
+                echo 'Pushing image to Docker Hub'
+                sh 'echo "docker push yourdockerhub/hello-world-app"'
+            }
+        }
+
+        stage('Deploy to Test Server') {
+            steps {
+                echo 'Deploying container'
+                sh 'echo "docker run -d -p 8082:80 hello-world-app"'
             }
         }
 
