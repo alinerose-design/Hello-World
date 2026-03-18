@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aromatica-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aromatica
+  template:
+    metadata:
+      labels:
+        app: aromatica
+    spec:
+      containers:
+        - name: aromatica
+          image: aromatica:latest
+          ports:
+            - containerPort: 80
