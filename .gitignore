@@ -1,0 +1,6 @@
+# Flutter/Dart
+.dart_tool/
+.build/
+.packages
+.pub/
+build/
